@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Bank {
-	private ArrayList bankAccounts;
+	private ArrayList<BankAccount> bankAccounts;
 	
 	/** Skapar en ny bank utan konton. */
 	public Bank() {
@@ -12,14 +12,13 @@ public class Bank {
 	* med de givna uppgifterna ska inte en ny Customer skapas, utan istället
 	* den befintliga användas. Det nya kontonumret returneras.
 	*/
-	int addAccount(String holderName, long idNr) {
-		for (int i = 0; i<bankAccounts.size(); i++) {
-			if(bankAccounts.get(i).getHolder().getName().equals(holderName && bankAccounts.get(i).getHolder().getIdNr() == idNr)) {					//??hjälp gabriel
-				
-			}
-		}
+	public int addAccount(String holderName, long idNr) {
+		bankAccounts.add( new BankAccount(holderName, idNr));
+		bankAccounts.add(new BankAccount())
+		
 		return 1;
 	}
+	
 	/**
 	* Returnerar den kontoinnehavaren som har det givna id-numret,
 	* eller null om ingen sådan finns.
@@ -29,17 +28,28 @@ public class Bank {
 	* Tar bort konto med nummer 'number' från banken. Returnerar true om
 	* kontot fanns (och kunde tas bort), annars false.
 	*/
-	boolean removeAccount(int number);
+	public boolean removeAccount(int number) {
+		for(int i = 0; i<bankAccounts.size(); i++) {
+			BankAccount b = bankAccounts.get(i);
+			if(bankAccounts.get(i).getAccountNumber() == number) {
+				
+			}
+		}
+	}
 	/**
 	* Returnerar en lista innehållande samtliga bankkonton i banken.
 	* Listan är sorterad på kontoinnehavarnas namn.
 	*/
-	ArrayList<BankAccount> getAllAccounts();
+	public ArrayList<BankAccount> getAllAccounts(){
+		return bankAccounts;
+	}
 	/**
 	* Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
 	* Returnerar null om inget sådant konto finns.
 	*/
-	BankAccount findByNumber(int accountNumber);
+	public BankAccount findByNumber(int accountNumber) {
+		return BankAccou
+	}
 	/**
 	* Söker upp alla bankkonton som innehas av kunden med id-nummer 'idNr'.
 	* Kontona returneras i en lista. Kunderna antas ha unika id-nummer.

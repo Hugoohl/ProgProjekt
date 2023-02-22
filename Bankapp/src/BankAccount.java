@@ -1,7 +1,5 @@
 
 public class BankAccount {
-	private String holderName;
-	private long holderId;
 	private int acNbr;
 	private double amount;
 	private Customer holder;
@@ -14,8 +12,7 @@ public class BankAccount {
 	 * inledningsvis 0 kr.
 	 */
 	public BankAccount(String holderName, long holderId) {
-		this.holderName = holderName;
-		this.holderId = holderId;
+		this.holder= new Customer(holderName,holderId);
 		acNbr = currentAcNbr;
 		currentAcNbr++;
 		amount = 0;
@@ -62,7 +59,7 @@ public class BankAccount {
 
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
-		return(holderName+','+holderId+','+acNbr+','+ amount+','+ holder);
+		return(holder.getName()+','+holder.getIdNr()+','+acNbr+','+ amount+','+ holder);
 	}
 
 }
