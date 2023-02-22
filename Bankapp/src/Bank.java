@@ -13,8 +13,16 @@ public class Bank {
 	* den befintliga användas. Det nya kontonumret returneras.
 	*/
 	public int addAccount(String holderName, long idNr) {
-		bankAccounts.add( new BankAccount(holderName, idNr));
-		bankAccounts.add(new BankAccount())
+		for(int i = 0; i < bankAccounts.size(); i++) {
+			if(bankAccounts.get(i).getHolder().getName().equals(holderName) && bankAccounts.get(i).getHolder().getIdNr() == idNr) {
+				
+			}
+			else {
+				bankAccounts.add(new BankAccount(holderName, idNr));
+			}
+		}
+		
+		
 		
 		return 1;
 	}
@@ -30,11 +38,12 @@ public class Bank {
 	*/
 	public boolean removeAccount(int number) {
 		for(int i = 0; i<bankAccounts.size(); i++) {
-			BankAccount b = bankAccounts.get(i);
 			if(bankAccounts.get(i).getAccountNumber() == number) {
-				
+				bankAccounts.remove(i);
+				return true;
 			}
 		}
+		return false;
 	}
 	/**
 	* Returnerar en lista innehållande samtliga bankkonton i banken.
