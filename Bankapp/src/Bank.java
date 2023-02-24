@@ -82,17 +82,7 @@ public class Bank {
 	 * Returnerar null om inget sådant konto finns.
 	 */
 	public BankAccount findByNumber(int accountNumber) {
-<<<<<<< HEAD
-		return BankAccount
-=======
-		BankAccount searchedAcNbr = null;
-		for (int i = 0; i < bankAccounts.size(); i++) {
-			if (bankAccounts.get(i).getAccountNumber() == accountNumber) {
-				searchedAcNbr = bankAccounts.get(i);
-			}
-		}
-		return searchedAcNbr;
->>>>>>> branch 'main' of https://github.com/Hugoohl/ProgProjekt.git
+
 	}
 
 	/**
@@ -109,17 +99,7 @@ public class Bank {
 		return listOfAc;
 	}
 
-<<<<<<< HEAD
-	/*
-	* Söker upp kunder utifrån en sökning på namn eller del av namn. Alla
-	* personer vars namn innehåller strängen 'namePart' inkluderas i
-	* resultatet, som returneras som en lista. Samma person kan förekomma
-	* flera gånger i resultatet. Sökningen är "case insensitive", det vill
-	* säga gör ingen skillnad på stora och små bokstäver.
-	*/
 
-	ArrayList<Customer> findByPartofName(String namePart);
-=======
 	/**
 	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
 	 * vars namn innehåller strängen 'namePart' inkluderas i resultatet, som
@@ -136,6 +116,6 @@ public class Bank {
 		}
 		return customerSearch;
 	}
->>>>>>> branch 'main' of https://github.com/Hugoohl/ProgProjekt.git
+
 
 }
