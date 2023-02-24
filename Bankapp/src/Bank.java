@@ -12,30 +12,38 @@ public class Bank {
 	* med de givna uppgifterna ska inte en ny Customer skapas, utan istället
 	* den befintliga användas. Det nya kontonumret returneras.
 	*/
-	public int addAccount(String holderName, long idNr) {
+	/*public int addAccount(String holderName, long idNr) {
 		bankAccounts.add( new BankAccount(holderName, idNr));
 		bankAccounts.add(new BankAccount())
 		
 		return 1;
-	}
+	}*/
 	
 	/**
 	* Returnerar den kontoinnehavaren som har det givna id-numret,
 	* eller null om ingen sådan finns.
 	*/
-	Customer findHolder(long idNr);
+	Customer findHolder(long idNr) {
+	for(int i = 0; i<bankAccounts.size(); i++) {
+		//BankAccount b = bankAccounts.get(i);
+		if(bankAccounts.get(i).getAccountNumber() == idNr);
+			return bankAccounts.get(i).getHolder();
+	}
+	return null;
+	}
+	
 	/**
 	* Tar bort konto med nummer 'number' från banken. Returnerar true om
 	* kontot fanns (och kunde tas bort), annars false.
 	*/
-	public boolean removeAccount(int number) {
+	/*public boolean removeAccount(int number) {
 		for(int i = 0; i<bankAccounts.size(); i++) {
 			BankAccount b = bankAccounts.get(i);
 			if(bankAccounts.get(i).getAccountNumber() == number) {
 				
 			}
 		}
-	}
+	}*/
 	/**
 	* Returnerar en lista innehållande samtliga bankkonton i banken.
 	* Listan är sorterad på kontoinnehavarnas namn.
@@ -47,14 +55,14 @@ public class Bank {
 	* Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
 	* Returnerar null om inget sådant konto finns.
 	*/
-	public BankAccount findByNumber(int accountNumber) {
+	/*public BankAccount findByNumber(int accountNumber) {
 		return BankAccou
-	}
+	}*/
 	/**
 	* Söker upp alla bankkonton som innehas av kunden med id-nummer 'idNr'.
 	* Kontona returneras i en lista. Kunderna antas ha unika id-nummer.
 	*/
-	ArrayList<BankAccount> findAccountsForHolder(long idNr);
+	/*ArrayList<BankAccount> findAccountsForHolder(long idNr);
 	/**
 	* Söker upp kunder utifrån en sökning på namn eller del av namn. Alla
 	* personer vars namn innehåller strängen 'namePart' inkluderas i
@@ -62,6 +70,6 @@ public class Bank {
 	* flera gånger i resultatet. Sökningen är "case insensitive", det vill
 	* säga gör ingen skillnad på stora och små bokstäver.
 	*/
-	ArrayList<Customer> findByPartofName(String namePart);
+	/*ArrayList<Customer> findByPartofName(String namePart);
 
-}
+}*/
