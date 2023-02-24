@@ -82,6 +82,13 @@ public class Bank {
 	 * Returnerar null om inget sådant konto finns.
 	 */
 	public BankAccount findByNumber(int accountNumber) {
+		BankAccount searchedAcNbr = null;
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getAccountNumber() == accountNumber) {
+				searchedAcNbr = bankAccounts.get(i);
+			}
+		}
+		return searchedAcNbr;
 
 	}
 
