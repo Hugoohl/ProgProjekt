@@ -62,34 +62,54 @@ public class Bank {
 	 */
 	public ArrayList<BankAccount> getAllAccounts() {
 		ArrayList<BankAccount> sortedList = new ArrayList<BankAccount>(bankAccounts);
-		for(int i = 0; i<sortedList.size(); i++) {
-			for(int j = sortedList.size()-1; j>i; j--) {
-				if(sortedList.get(i).getHolder().getName().compareToIgnoreCase(sortedList.get(j).getHolder().getName()) > 0 ) {
+		for (int i = 0; i < sortedList.size(); i++) {
+			for (int j = sortedList.size() - 1; j > i; j--) {
+				if (sortedList.get(i).getHolder().getName()
+						.compareToIgnoreCase(sortedList.get(j).getHolder().getName()) > 0) {
 					BankAccount temp = sortedList.get(i);
 					sortedList.set(i, sortedList.get(j));
 					sortedList.set(j, temp);
 				}
-				
+
 			}
 		}
-		
+
 		return sortedList;
 	}
 
 	/**
-	* Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
-	* Returnerar null om inget sådant konto finns.
-	*/
+	 * Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
+	 * Returnerar null om inget sådant konto finns.
+	 */
 	public BankAccount findByNumber(int accountNumber) {
+<<<<<<< HEAD
 		return BankAccount
+=======
+		BankAccount searchedAcNbr = null;
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getAccountNumber() == accountNumber) {
+				searchedAcNbr = bankAccounts.get(i);
+			}
+		}
+		return searchedAcNbr;
+>>>>>>> branch 'main' of https://github.com/Hugoohl/ProgProjekt.git
 	}
 
 	/**
 	 * Söker upp alla bankkonton som innehas av kunden med id-nummer 'idNr'. Kontona
 	 * returneras i en lista. Kunderna antas ha unika id-nummer.
 	 */
-	ArrayList<BankAccount> findAccountsForHolder(long idNr);
+	ArrayList<BankAccount> findAccountsForHolder(long idNr) {
+		ArrayList<BankAccount> listOfAc = new ArrayList<BankAccount>();
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getHolder().getIdNr() == idNr) {
+				listOfAc.add(bankAccounts.get(i));
+			}
+		}
+		return listOfAc;
+	}
 
+<<<<<<< HEAD
 	/*
 	* Söker upp kunder utifrån en sökning på namn eller del av namn. Alla
 	* personer vars namn innehåller strängen 'namePart' inkluderas i
@@ -99,5 +119,23 @@ public class Bank {
 	*/
 
 	ArrayList<Customer> findByPartofName(String namePart);
+=======
+	/**
+	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
+	 * vars namn innehåller strängen 'namePart' inkluderas i resultatet, som
+	 * returneras som en lista. Samma person kan förekomma flera gånger i
+	 * resultatet. Sökningen är "case insensitive", det vill säga gör ingen skillnad
+	 * på stora och små bokstäver.
+	 */
+	ArrayList<Customer> findByPartofName(String namePart) {
+		ArrayList<Customer> customerSearch = new ArrayList<Customer>();
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getHolder().getName().toLowerCase().contains(namePart.toLowerCase())) {
+				customerSearch.add(bankAccounts.get(i).getHolder());
+			}
+		}
+		return customerSearch;
+	}
+>>>>>>> branch 'main' of https://github.com/Hugoohl/ProgProjekt.git
 
 }
