@@ -36,14 +36,14 @@ public class Bank {
 	* Tar bort konto med nummer 'number' från banken. Returnerar true om
 	* kontot fanns (och kunde tas bort), annars false.
 	*/
-	/*public boolean removeAccount(int number) {
+	public boolean removeAccount(int number) {
 		for(int i = 0; i<bankAccounts.size(); i++) {
 			BankAccount b = bankAccounts.get(i);
 			if(bankAccounts.get(i).getAccountNumber() == number) {
 				
 			}
 		}
-	}*/
+	}
 	/**
 	* Returnerar en lista innehållande samtliga bankkonton i banken.
 	* Listan är sorterad på kontoinnehavarnas namn.
@@ -55,21 +55,21 @@ public class Bank {
 	* Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
 	* Returnerar null om inget sådant konto finns.
 	*/
-	/*public BankAccount findByNumber(int accountNumber) {
-		return BankAccou
-	}*/
+	public BankAccount findByNumber(int accountNumber) {
+		return BankAccount
+	}
 	/**
 	* Söker upp alla bankkonton som innehas av kunden med id-nummer 'idNr'.
 	* Kontona returneras i en lista. Kunderna antas ha unika id-nummer.
 	*/
-	/*ArrayList<BankAccount> findAccountsForHolder(long idNr);
-	/**
+	ArrayList<BankAccount> findAccountsForHolder(long idNr);
+	/*
 	* Söker upp kunder utifrån en sökning på namn eller del av namn. Alla
 	* personer vars namn innehåller strängen 'namePart' inkluderas i
 	* resultatet, som returneras som en lista. Samma person kan förekomma
 	* flera gånger i resultatet. Sökningen är "case insensitive", det vill
 	* säga gör ingen skillnad på stora och små bokstäver.
 	*/
-	/*ArrayList<Customer> findByPartofName(String namePart);
+	ArrayList<Customer> findByPartofName(String namePart);
 
-}*/
+}
