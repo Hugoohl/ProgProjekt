@@ -55,17 +55,18 @@ public class Bank {
 	 */
 	public ArrayList<BankAccount> getAllAccounts() {
 		ArrayList<BankAccount> sortedList = new ArrayList<BankAccount>(bankAccounts);
-		for(int i = 0; i<sortedList.size(); i++) {
-			for(int j = sortedList.size()-1; j>i; j--) {
-				if(sortedList.get(i).getHolder().getName().compareToIgnoreCase(sortedList.get(j).getHolder().getName()) > 0 ) {
+		for (int i = 0; i < sortedList.size(); i++) {
+			for (int j = sortedList.size() - 1; j > i; j--) {
+				if (sortedList.get(i).getHolder().getName()
+						.compareToIgnoreCase(sortedList.get(j).getHolder().getName()) > 0) {
 					BankAccount temp = sortedList.get(i);
 					sortedList.set(i, sortedList.get(j));
 					sortedList.set(j, temp);
 				}
-				
+
 			}
 		}
-		
+
 		return sortedList;
 	}
 
