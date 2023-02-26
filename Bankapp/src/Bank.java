@@ -8,11 +8,12 @@ public class Bank {
 		bankAccounts = new ArrayList<BankAccount>();
 	}
 
-	/**
+	/*
 	 * Öppna ett nytt konto i banken. Om det redan finns en kontoinnehavare med de
 	 * givna uppgifterna ska inte en ny Customer skapas, utan istället den
 	 * befintliga användas. Det nya kontonumret returneras.
 	 */
+	
 	public int addAccount(String holderName, long idNr) {
 		for (int i = 0; i < bankAccounts.size(); i++) {
 			if (bankAccounts.get(i).getHolder().getName().equals(holderName)
@@ -29,11 +30,17 @@ public class Bank {
 																				// kontot vi precis la till.
 	}
 
-	/**
-	 * Returnerar den kontoinnehavaren som har det givna id-numret, eller null om
-	 * ingen sådan finns.
-	 */
-	Customer findHolder(long idNr);
+
+
+	Customer findHolder(long idNr) {
+	for(int i = 0; i<bankAccounts.size(); i++) {
+		//BankAccount b = bankAccounts.get(i);
+		if(bankAccounts.get(i).getAccountNumber() == idNr);
+			return bankAccounts.get(i).getHolder();
+	}
+	return null;
+	}
+	
 
 	/**
 	 * Tar bort konto med nummer 'number' från banken. Returnerar true om kontot
@@ -71,18 +78,34 @@ public class Bank {
 	}
 
 	/**
-	* Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
-	* Returnerar null om inget sådant konto finns.
-	*/
+	 * Söker upp och returnerar bankkontot med kontonummer 'accountNumber'.
+	 * Returnerar null om inget sådant konto finns.
+	 */
 	public BankAccount findByNumber(int accountNumber) {
-		return BankAccou
+		BankAccount searchedAcNbr = null;
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getAccountNumber() == accountNumber) {
+				searchedAcNbr = bankAccounts.get(i);
+			}
+		}
+		return searchedAcNbr;
+
 	}
 
 	/**
 	 * Söker upp alla bankkonton som innehas av kunden med id-nummer 'idNr'. Kontona
 	 * returneras i en lista. Kunderna antas ha unika id-nummer.
 	 */
-	ArrayList<BankAccount> findAccountsForHolder(long idNr);
+	ArrayList<BankAccount> findAccountsForHolder(long idNr) {
+		ArrayList<BankAccount> listOfAc = new ArrayList<BankAccount>();
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getHolder().getIdNr() == idNr) {
+				listOfAc.add(bankAccounts.get(i));
+			}
+		}
+		return listOfAc;
+	}
+
 
 	/**
 	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
@@ -91,6 +114,15 @@ public class Bank {
 	 * resultatet. Sökningen är "case insensitive", det vill säga gör ingen skillnad
 	 * på stora och små bokstäver.
 	 */
-	ArrayList<Customer> findByPartofName(String namePart);
+	ArrayList<Customer> findByPartofName(String namePart) {
+		ArrayList<Customer> customerSearch = new ArrayList<Customer>();
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			if (bankAccounts.get(i).getHolder().getName().toLowerCase().contains(namePart.toLowerCase())) {
+				customerSearch.add(bankAccounts.get(i).getHolder());
+			}
+		}
+		return customerSearch;
+	}
+
 
 }
