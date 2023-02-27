@@ -24,15 +24,12 @@ public class BankApplication {
 			break;
 		case 6:
 			System.out.println("namn: ");
-		
 			System.out.println("id: ");
 			System.out.println("konto skapat: " + bank.addAccount(scan.next(), scan.nextLong()));
 			break;
 		case 7:
 			System.out.println("konto: ");
-			int accnum2 = scan.nextInt();
-			bank.removeAccount(accnum2);
-			System.out.println("konto bortaget: " + accnum2 );
+			System.out.println("konto bortaget: " + bank.removeAccount(scan.nextInt()));
 			break;
 		case 8:
 			System.out.println(bank.getAllAccounts());
