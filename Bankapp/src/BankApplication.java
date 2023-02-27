@@ -24,17 +24,21 @@ public class BankApplication {
 			break;
 		case 6:
 			System.out.println("namn: ");
-			String holderName = scan.next();
+		
 			System.out.println("id: ");
-			long idNr = scan.nextLong();
-			int accnum = bank.addAccount(holderName, idNr);
-			System.out.println("konto skapat: " + accnum );
+			System.out.println("konto skapat: " + bank.addAccount(scan.next(), scan.nextLong()));
 			break;
 		case 7:
+			System.out.println("konto: ");
+			int accnum2 = scan.nextInt();
+			bank.removeAccount(accnum2);
+			System.out.println("konto bortaget: " + accnum2 );
 			break;
 		case 8:
+			System.out.println(bank.getAllAccounts());
 			break;
 		case 9:
+			
 			break;
 		}
 	}

@@ -20,7 +20,8 @@ public class Bank {
 					&& bankAccounts.get(i).getHolder().getIdNr() == idNr) { // Om det finns ett konto med dessa
 																			// uppgifterna
 				bankAccounts.add(new BankAccount(bankAccounts.get(i).getHolder())); // skapa ett ny konto med samma kund
-																					// som äger det kontot
+													// som äger det kontot
+				
 			} else {
 				bankAccounts.add(new BankAccount(holderName, idNr)); // Skapa ett nytt konto med dessa uppgifter.
 			}
