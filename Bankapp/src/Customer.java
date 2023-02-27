@@ -33,7 +33,7 @@ public class Customer {
 
 	/** Returnerar en strängbeskrivning av kunden. */
 	public String toString() {
-		return (name + ',' + idNr + ',' + cuNr);
+		return (name + ", id " + idNr + ", kundnr " + cuNr);
 
 	}
 

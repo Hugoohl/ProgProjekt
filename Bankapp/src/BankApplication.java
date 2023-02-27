@@ -1,14 +1,27 @@
 import java.util.Scanner;
 
 public class BankApplication {
-	static Bank bank = new Bank();
+	
 
 	public static void main(String[] args) {
+		Bank bank = new Bank();
 		Scanner scan = new Scanner(System.in);
 		menu();
-		test();
+		bank.addAccount("Erik Johansson", 7208151242L);
+		bank.addAccount("Anna Andersson", 9307023397L);
+		bank.addAccount("Johan Svensson", 8102107584L);
+		bank.addAccount("Sofia Lundqvist", 6408279876L);
+		bank.addAccount("Jesus Gustavsson", 7812033218L);
+		bank.addAccount("Linda Nilsson", 9503289021L);
+		bank.addAccount("Dickbert Carlsson", 8206296643L);
+		bank.addAccount("Sara Bergström", 8707225213L);
+		bank.addAccount("Kristina Söderberg", 9201218765L);
+		bank.addAccount("Magnus Andersson", 6909154321L);
+		
 		int option = scan.nextInt();
+		
 		switch (option) {
+		
 		case 1:
 			System.out.println("id:");
 			System.out.println(bank.findAccountsForHolder(scan.nextLong()));
@@ -30,6 +43,12 @@ public class BankApplication {
 		case 5:
 			break;
 		case 6:
+			System.out.println("namn: ");
+			String holderName = scan.next();
+			System.out.println("id: ");
+			long idNr = scan.nextLong();
+			int accnum = bank.addAccount(holderName, idNr);
+			System.out.println("konto skapat: " + accnum );
 			break;
 		case 7:
 			break;
@@ -56,17 +75,8 @@ public class BankApplication {
 		System.out.println("Val: ");
 	}
 
-	public static void test() {
-		bank.addAccount("Erik Johansson", 720815124);
-		bank.addAccount("Anna Andersson", 9307023397L);
-		bank.addAccount("Johan Svensson", 8102107584L);
-		bank.addAccount("Sofia Lundqvist", 6408279876L);
-		bank.addAccount("Jesus Gustavsson", 7812033218L);
-		bank.addAccount("Linda Nilsson", 9503289021L);
-		bank.addAccount("Dickbert Carlsson", 8206296643L);
-		bank.addAccount("Sara Bergström", 8707225213L);
-		bank.addAccount("Kristina Söderberg", 9201218765L);
-		bank.addAccount("Magnus Andersson", 6909154321L);
+	
 
-	}
+
+	
 }

@@ -6,6 +6,7 @@ public class Bank {
 	/** Skapar en ny bank utan konton. */
 	public Bank() {
 		bankAccounts = new ArrayList<BankAccount>();
+		//bankAccounts.add(new BankAccount("test", 12345678));
 	}
 
 	/*
@@ -13,34 +14,30 @@ public class Bank {
 	 * givna uppgifterna ska inte en ny Customer skapas, utan istället den
 	 * befintliga användas. Det nya kontonumret returneras.
 	 */
-	
+
 	public int addAccount(String holderName, long idNr) {
 		for (int i = 0; i < bankAccounts.size(); i++) {
 			if (bankAccounts.get(i).getHolder().getName().equals(holderName)
-					&& bankAccounts.get(i).getHolder().getIdNr() == idNr) { // Om det finns ett konto med dessa
-																			// uppgifterna
+					&& bankAccounts.get(i).getHolder().getIdNr() == idNr) { // Om det finns ett konto med dessa	uppgifterna
 				bankAccounts.add(new BankAccount(bankAccounts.get(i).getHolder())); // skapa ett ny konto med samma kund
-																					// som äger det kontot
-			} else {
-				bankAccounts.add(new BankAccount(holderName, idNr)); // Skapa ett nytt konto med dessa uppgifter.
+				return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber();															// som äger det kontot
 			}
 		}
+		bankAccounts.add(new BankAccount(holderName, idNr)); // Skapa ett nytt konto med dessa uppgifter.
 		return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber(); // Retunerar kontonumret på sista elemnetet
 																				// i listan med kontonummer, alltså
 																				// kontot vi precis la till.
 	}
 
-
-
 	Customer findHolder(long idNr) {
-	for(int i = 0; i<bankAccounts.size(); i++) {
-		//BankAccount b = bankAccounts.get(i);
-		if(bankAccounts.get(i).getAccountNumber() == idNr);
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			// BankAccount b = bankAccounts.get(i);
+			if (bankAccounts.get(i).getAccountNumber() == idNr)
+				;
 			return bankAccounts.get(i).getHolder();
+		}
+		return null;
 	}
-	return null;
-	}
-	
 
 	/**
 	 * Tar bort konto med nummer 'number' från banken. Returnerar true om kontot
@@ -106,7 +103,6 @@ public class Bank {
 		return listOfAc;
 	}
 
-
 	/**
 	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
 	 * vars namn innehåller strängen 'namePart' inkluderas i resultatet, som
@@ -123,6 +119,5 @@ public class Bank {
 		}
 		return customerSearch;
 	}
-
 
 }

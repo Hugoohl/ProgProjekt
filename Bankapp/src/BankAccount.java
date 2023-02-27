@@ -59,7 +59,7 @@ public class BankAccount {
 
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
-		return(holder.getName()+','+holder.getIdNr()+','+acNbr+','+ amount+','+ holder);
+		return("konto " +acNbr + " (" + holder + "): " + amount);
 	}
 
 }
