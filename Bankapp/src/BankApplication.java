@@ -7,47 +7,56 @@ public class BankApplication {
 
 	public static void main(String[] args) {
 		test();
-		menu();
-		while(!run()) {
-		menu();
-		run();
+		while (true) {
+			menu();
+			if (run()) {
+				return;
+			}
 		}
 
 	}
-	
 
 	public static boolean run() {
-		int option = scan.nextInt();
 		boolean quit = false;
-		switch (option) {
-		case 1:
-			one();
-			break;
-		case 2:
-			two();
-			break;
-		case 3:
-			three();
-			break;
-		case 4:
-			four();
-			break;
-		case 5:
-			five();
-			break;
-		case 6:
-			six();
-			break;
-		case 7:
-			seven();
-			break;
-		case 8:
-			eight();
-			break;
-		case 9:
-			quit = true;
-			break;
-		default:
+		if (scan.hasNextInt()) {
+			int option = scan.nextInt();
+			switch (option) {
+			case 1:
+				one();
+				break;
+			case 2:
+				two();
+				break;
+			case 3:
+				three();
+				break;
+			case 4:
+				four();
+				break;
+			case 5:
+				five();
+				break;
+			case 6:
+				six();
+				break;
+			case 7:
+				seven();
+				break;
+			case 8:
+				eight();
+				break;
+			case 9:
+				quit = true;
+				System.out.println("--------------------------------------------------------------");
+				break;
+			default:
+				System.out.println("Välj ett av de tillgängliga alternativen."); 
+																					
+																					
+			}
+
+		} else {
+			scan.nextLine();
 			System.out.println("Välj ett av de tillgängliga alternativen.");
 		}
 		return quit;
@@ -70,7 +79,11 @@ public class BankApplication {
 
 	public static void one() {
 		System.out.print("id:");
-		System.out.println(bank.findAccountsForHolder(scan.nextLong()));
+		ArrayList<BankAccount> list = bank.findAccountsForHolder(scan.nextLong());
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+
 	}
 
 	public static void two() {
@@ -81,13 +94,21 @@ public class BankApplication {
 
 	}
 
-	public static void three() {
+	public static void three() { // Möjligtvis gör nån loop
 		System.out.print("konto:");
 		BankAccount account = bank.findByNumber(scan.nextInt());
-		System.out.print("belopp:");
-		double belopp = scan.nextDouble();
-		account.deposit(belopp);
-		System.out.println(account);
+		if (account == null) {
+			System.out.println("Kontot existerar ej.");
+		} else {
+			System.out.print("belopp:");
+			double belopp = scan.nextDouble();
+			if (belopp < 0) {
+				System.out.println("Vänligen ange ett positivt belopp!?");
+			} else {
+				account.deposit(belopp);
+				System.out.println(account);
+			}
+		}
 
 	}
 
@@ -130,14 +151,12 @@ public class BankApplication {
 
 	}
 
-	public static void eight() {
+	public static void eight() { // (valfritt) fixa inbördes ordning på en personer med samma namn
 		ArrayList<BankAccount> list = bank.getAllAccounts();
 		for (int i = 0; i < list.size(); i++)
 			System.out.println(list.get(i));
 
 	}
-
-	
 
 	public static void test() {
 		bank.addAccount("Erik Johansson", 7208151242L);
@@ -149,6 +168,7 @@ public class BankApplication {
 		bank.addAccount("Dickbert Carlsson", 8206296643L);
 		bank.addAccount("Sara Bergström", 8707225213L);
 		bank.addAccount("Kristina Söderberg", 9201218765L);
+		bank.addAccount("Magnus Andersson", 6909154321L);
 		bank.addAccount("Magnus Andersson", 6909154321L);
 	}
 }
