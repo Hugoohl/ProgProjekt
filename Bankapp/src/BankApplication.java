@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class BankApplication {
-	
+	static Bank bank = new Bank();
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		menu();
-		Bank bank = new Bank();
+		
 		int option = scan.nextInt(); 
 	}
 	
@@ -25,5 +25,7 @@ public class BankApplication {
 		System.out.println("9. Avsluta");
 			}
 	
-	
+	public static void test() {
+		bank.addAccount("Johan Nilsson", 9802111222L);
+	}
 }
