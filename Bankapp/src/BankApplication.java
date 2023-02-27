@@ -1,12 +1,145 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BankApplication {
-	
+	static Bank bank = new Bank();
+	static Scanner scan = new Scanner(System.in).useDelimiter(System.lineSeparator()); // hitta på internätetet
 
 	public static void main(String[] args) {
-		Bank bank = new Bank();
-		Scanner scan = new Scanner(System.in);
+		test();
 		menu();
+		while(!run()) {
+		menu();
+		run();
+		}
+
+	}
+	
+
+	public static boolean run() {
+		int option = scan.nextInt();
+		boolean quit = false;
+		switch (option) {
+		case 1:
+			one();
+			break;
+		case 2:
+			two();
+			break;
+		case 3:
+			three();
+			break;
+		case 4:
+			four();
+			break;
+		case 5:
+			five();
+			break;
+		case 6:
+			six();
+			break;
+		case 7:
+			seven();
+			break;
+		case 8:
+			eight();
+			break;
+		case 9:
+			quit = true;
+			break;
+		default:
+			System.out.println("Välj ett av de tillgängliga alternativen.");
+		}
+		return quit;
+
+	}
+
+	public static void menu() {
+		System.out.println("--------------------------------------------------------------");
+		System.out.println("1. Hitta konton för en viss kontoinnehavare");
+		System.out.println("2. Sök kontoinnehavare på (del av) namn");
+		System.out.println("3. Sätta in pengar");
+		System.out.println("4. Ta ut pengar");
+		System.out.println("5. Överföring mellan konton");
+		System.out.println("6. Skapa nytt konto");
+		System.out.println("7. Ta bort konto");
+		System.out.println("8. Skriv ut bankens alla konton");
+		System.out.println("9. Avsluta");
+		System.out.print("Val: ");
+	}
+
+	public static void one() {
+		System.out.print("id:");
+		System.out.println(bank.findAccountsForHolder(scan.nextLong()));
+	}
+
+	public static void two() {
+		System.out.print("namn:");
+		ArrayList<Customer> listOfAc = bank.findByPartofName(scan.next());
+		for (int i = 0; i < listOfAc.size(); i++)
+			System.out.println(listOfAc.get(i));
+
+	}
+
+	public static void three() {
+		System.out.print("konto:");
+		BankAccount account = bank.findByNumber(scan.nextInt());
+		System.out.print("belopp:");
+		double belopp = scan.nextDouble();
+		account.deposit(belopp);
+		System.out.println(account);
+
+	}
+
+	public static void four() {
+		System.out.print("från konto:");
+		int k = scan.nextInt();
+		System.out.print("belopp:");
+		double wd = scan.nextDouble();
+		bank.findByNumber(k).withdraw(wd);
+		System.out.println(bank.findByNumber(k));
+
+	}
+
+	public static void five() {
+		System.out.print("från konto:");
+		int fk = scan.nextInt();
+		System.out.print("till konto:");
+		int tk = scan.nextInt();
+		System.out.print("belopp:");
+		double b = scan.nextDouble();
+		bank.findByNumber(fk).withdraw(b);
+		bank.findByNumber(tk).deposit(b);
+		System.out.println(bank.findByNumber(fk));
+		System.out.println(bank.findByNumber(tk));
+
+	}
+
+	public static void six() {
+		System.out.print("namn: ");
+		String namn = scan.next();
+		System.out.print("id: ");
+		long id = scan.nextLong();
+		System.out.println("konto skapat: " + bank.addAccount(namn, id));
+
+	}
+
+	public static void seven() {
+		System.out.print("konto: ");
+		bank.removeAccount(scan.nextInt());
+
+	}
+
+	public static void eight() {
+		ArrayList<BankAccount> list = bank.getAllAccounts();
+		for (int i = 0; i < list.size(); i++)
+			System.out.println(list.get(i));
+
+	}
+
+	
+
+	public static void test() {
 		bank.addAccount("Erik Johansson", 7208151242L);
 		bank.addAccount("Anna Andersson", 9307023397L);
 		bank.addAccount("Johan Svensson", 8102107584L);
@@ -17,66 +150,5 @@ public class BankApplication {
 		bank.addAccount("Sara Bergström", 8707225213L);
 		bank.addAccount("Kristina Söderberg", 9201218765L);
 		bank.addAccount("Magnus Andersson", 6909154321L);
-		
-		int option = scan.nextInt();
-		
-		switch (option) {
-		
-		case 1:
-			System.out.println("id:");
-			System.out.println(bank.findAccountsForHolder(scan.nextLong()));
-			break;
-		case 2:
-			System.out.println("namn:");
-			System.out.println(bank.findByPartofName(scan.next()));
-			break;
-		case 3:
-			System.out.println("konto:");
-			BankAccount account = bank.findByNumber(scan.nextInt());
-			System.out.println("belopp:");
-			double belopp = scan.nextDouble();
-			account.deposit(belopp);
-			System.out.println(account);
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			System.out.println("namn: ");
-			String holderName = scan.next();
-			System.out.println("id: ");
-			long idNr = scan.nextLong();
-			int accnum = bank.addAccount(holderName, idNr);
-			System.out.println("konto skapat: " + accnum );
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
-		case 9:
-			break;
-		default:
-			System.out.println("1");
-		}
 	}
-
-	public static void menu() {
-		System.out.println("--------------------------------------------------------------");
-		System.out.println("1. Hitta konton för en viss kontoinnehavare");
-		System.out.println("2. Sök kontoinnehavare på (del av) namn");
-		System.out.println("3. Sätta in pengare");
-		System.out.println("4. Ta ut pengare");
-		System.out.println("5. Överföring mellan konton");
-		System.out.println("6. Skapa nytt konto");
-		System.out.println("7. Ta bort konto");
-		System.out.println("8. Skriv ut bankens alla konton");
-		System.out.println("9. Avsluta");
-		System.out.println("Val: ");
-	}
-
-	
-
-
-	
 }

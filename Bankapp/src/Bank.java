@@ -6,7 +6,7 @@ public class Bank {
 	/** Skapar en ny bank utan konton. */
 	public Bank() {
 		bankAccounts = new ArrayList<BankAccount>();
-		//bankAccounts.add(new BankAccount("test", 12345678));
+		// bankAccounts.add(new BankAccount("test", 12345678));
 	}
 
 	/*
@@ -16,25 +16,29 @@ public class Bank {
 	 */
 
 	public int addAccount(String holderName, long idNr) {
-		for (int i = 0; i < bankAccounts.size(); i++) {
-			if (bankAccounts.get(i).getHolder().getName().equals(holderName)
-					&& bankAccounts.get(i).getHolder().getIdNr() == idNr) { // Om det finns ett konto med dessa	uppgifterna
-				bankAccounts.add(new BankAccount(bankAccounts.get(i).getHolder())); // skapa ett ny konto med samma kund
-				return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber();															// som äger det kontot
-			}
-		}
-		bankAccounts.add(new BankAccount(holderName, idNr)); // Skapa ett nytt konto med dessa uppgifter.
-		return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber(); // Retunerar kontonumret på sista elemnetet
-																				// i listan med kontonummer, alltså
-																				// kontot vi precis la till.
-	}
 
+		if (findHolder(idNr) != null) { // Om det finns ett konto med dessa
+			bankAccounts.add(new BankAccount(findHolder(idNr))); // skapa ett ny konto med samma kun
+			return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber();
+		} else {
+
+			bankAccounts.add(new BankAccount(holderName, idNr)); // Skapa ett nytt konto med dessa uppgifter.
+			return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber(); // Retunerar kontonumret på sista
+																					// elemnetet
+																					// i listan med kontonummer, alltså
+																					// kontot vi precis la till.
+		}
+	}
+	/**
+	* Returnerar den kontoinnehavaren som har det givna id-numret,
+	* eller null om ingen sådan finns.
+	*/
 	Customer findHolder(long idNr) {
 		for (int i = 0; i < bankAccounts.size(); i++) {
-			// BankAccount b = bankAccounts.get(i);
-			if (bankAccounts.get(i).getAccountNumber() == idNr)
-				;
-			return bankAccounts.get(i).getHolder();
+			if (bankAccounts.get(i).getHolder().getIdNr() == idNr) {
+
+				return bankAccounts.get(i).getHolder();
+			}
 		}
 		return null;
 	}
