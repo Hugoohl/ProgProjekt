@@ -8,8 +8,11 @@ public class BankApplication {
 		menu();
 		
 		int option = scan.nextInt(); 
+		
 		switch (option) {
+		
 		case 1:
+			bank.getAllAccounts();
 			break;
 		case 2:
 			break;
@@ -20,6 +23,12 @@ public class BankApplication {
 		case 5:
 			break;
 		case 6:
+			System.out.println("namn: ");
+			String holderName = scan.next();
+			System.out.println("id: ");
+			long idNr = scan.nextLong();
+			int accnum = bank.addAccount(holderName, idNr);
+			System.out.println("konto skapat: " + accnum );
 			break;
 		case 7:
 			break;
