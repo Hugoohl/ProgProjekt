@@ -26,6 +26,16 @@ public class BankApplication {
 			}
 	
 	public static void test() {
-		bank.addAccount("Johan Nilsson", 9802111222L);
+			bank.addAccount("Erik Johansson", 7208151245L);
+			bank.addAccount("Anna Andersson", 9307023397L);
+			bank.addAccount("Johan Svensson", 8102107584L);
+			bank.addAccount("Sofia Lundqvist", 6408279876L);
+			bank.addAccount("Jesus Gustavsson", 7812033218L);
+			bank.addAccount("Linda Nilsson", 9503289021L);
+			bank.addAccount("Dickbert Carlsson", 8206296643L);
+			bank.addAccount("Sara Bergström", 8707225213L);
+			bank.addAccount("Kristina Söderberg", 9201218765L);
+			bank.addAccount("Magnus Andersson", 6909154321L);
+		
 	}
 }
