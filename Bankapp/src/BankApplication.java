@@ -8,6 +8,7 @@ public class BankApplication {
 		menu();
 		
 		int option = scan.nextInt(); 
+		
 	}
 	
 	
