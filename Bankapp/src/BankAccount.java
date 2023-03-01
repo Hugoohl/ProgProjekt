@@ -11,8 +11,9 @@ public class BankAccount {
 	 * 'holderId'. Kontot tilldelas ett unikt kontonummer och innehåller
 	 * inledningsvis 0 kr.
 	 */
-	public BankAccount(String holderName, long holderId) { 
-		this.holder= new Customer(holderName,holderId);
+
+	public BankAccount(String holderName, long holderId) {
+		this.holder = new Customer(holderName, holderId);
 		acNbr = currentAcNbr;
 		currentAcNbr++;
 		amount = 0;
@@ -46,7 +47,7 @@ public class BankAccount {
 
 	/** Sätter in beloppet 'amount' på kontot. */
 	public void deposit(double amount) {
-		this.amount=amount;
+		this.amount = amount;
 	}
 
 	/**
@@ -54,12 +55,12 @@ public class BankAccount {
 	 * negativt.
 	 */
 	public void withdraw(double amount) {
-		this.amount-=amount;
+		this.amount -= amount;
 	}
 
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
-		return("konto " +acNbr + " (" + holder + "): " + amount);
+		return ("konto " + acNbr + " (" + holder + "): " + amount + " kr");
 	}
 
 }

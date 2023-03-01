@@ -29,10 +29,11 @@ public class Bank {
 																					// kontot vi precis la till.
 		}
 	}
+
 	/**
-	* Returnerar den kontoinnehavaren som har det givna id-numret,
-	* eller null om ingen sådan finns.
-	*/
+	 * Returnerar den kontoinnehavaren som har det givna id-numret, eller null om
+	 * ingen sådan finns.
+	 */
 	Customer findHolder(long idNr) {
 		for (int i = 0; i < bankAccounts.size(); i++) {
 			if (bankAccounts.get(i).getHolder().getIdNr() == idNr) {
@@ -83,13 +84,13 @@ public class Bank {
 	 * Returnerar null om inget sådant konto finns.
 	 */
 	public BankAccount findByNumber(int accountNumber) {
-		BankAccount searchedAcNbr = null;
+		BankAccount searchedAc = null;
 		for (int i = 0; i < bankAccounts.size(); i++) {
 			if (bankAccounts.get(i).getAccountNumber() == accountNumber) {
-				searchedAcNbr = bankAccounts.get(i);
+				searchedAc = bankAccounts.get(i);
 			}
 		}
-		return searchedAcNbr;
+		return searchedAc;
 
 	}
 

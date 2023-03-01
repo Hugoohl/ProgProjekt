@@ -3,7 +3,7 @@ public class Customer {
 	private String name;
 	private long idNr;
 	private int cuNr;
-	static private int currentkdNr = 101; // samma variabel fär alla objekt.
+	static private int currentcuNr = 101; // samma variabel fär alla objekt.
 
 	/**
 	 * Skapar en kund (kontoinnehavare) med namnet 'name' och id-nummer 'idNr'.
@@ -12,8 +12,8 @@ public class Customer {
 	public Customer(String name, long idNr) {
 		this.name = name;
 		this.idNr = idNr;
-		cuNr = currentkdNr;
-		currentkdNr++;
+		cuNr = currentcuNr;
+		currentcuNr++;
 	}
 
 	/** Tar reda på kundens namn. */
