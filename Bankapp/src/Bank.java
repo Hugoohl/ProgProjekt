@@ -18,7 +18,7 @@ public class Bank {
 	public int addAccount(String holderName, long idNr) {
 
 		if (findHolder(idNr) != null) { // Om det finns ett konto med dessa
-			bankAccounts.add(new BankAccount(findHolder(idNr))); // skapa ett ny konto med samma kun
+			bankAccounts.add(new BankAccount(findHolder(idNr))); // skapa ett ny konto med samma kund
 			return bankAccounts.get(bankAccounts.size() - 1).getAccountNumber();
 		} else {
 

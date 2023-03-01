@@ -54,9 +54,11 @@ public class BankApplication {
 
 			}
 
-		} else {
+		} else if (scan.hasNext()) {
 			scan.nextLine();
 			System.out.println("Välj ett av de tillgängliga alternativen.");
+		} else {
+			return quit;
 		}
 		return quit;
 
@@ -78,87 +80,158 @@ public class BankApplication {
 
 	public static void one() {
 		System.out.print("id:");
-		while (scan.hasNextLong()) {
-			
+		if (scan.hasNextLong()) {
 			ArrayList<BankAccount> list = bank.findAccountsForHolder(scan.nextLong());
-			for (int i = 0; i < list.size(); i++) {
-				System.out.println(list.get(i));
-			}
 			if (list.isEmpty()) {
-				System.out.println("Ogiltigt id: ");
+				System.out.println("Finns inga konton");
+			} else {
+				for (int i = 0; i < list.size(); i++) {
+					System.out.println(list.get(i));
+				}
 			}
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt id");
+
+
 		}
 	}
 
 	public static void two() {
 		System.out.print("namn:");
 		ArrayList<Customer> listOfAc = bank.findByPartofName(scan.next());
-		for (int i = 0; i < listOfAc.size(); i++)
-			System.out.println(listOfAc.get(i));
-
-	}
-
-	public static void three() { // Möjligtvis gör nån loop
-		System.out.print("konto:");
-		BankAccount account = bank.findByNumber(scan.nextInt());
-		if (account == null) {
-			System.out.println("Kontot existerar ej.");
+		if (listOfAc.isEmpty()) {
+			System.out.println("Inget liknade kontot existerar");
 		} else {
-			System.out.print("belopp:");
-			double belopp = scan.nextDouble();
-			if (belopp < 0) {
-				System.out.println("Vänligen ange ett positivt belopp!?");
-			} else {
-				account.deposit(belopp);
-				System.out.println(account);
-			}
+			for (int i = 0; i < listOfAc.size(); i++)
+				System.out.println(listOfAc.get(i));
 		}
 
 	}
 
+	public static void three() {
+		System.out.print("konto:");
+		if (scan.hasNextInt()) {
+			BankAccount account = bank.findByNumber(scan.nextInt());
+			if (account == null) {
+				System.out.println("Kontot existerar ej.");
+			} else {
+				System.out.print("belopp:");
+				double belopp = scan.nextDouble();
+				if (belopp < 0) {
+					System.out.println("Vänligen ange ett positivt belopp!?");
+				} else {
+					account.deposit(belopp);
+					System.out.println(account);
+				}
+			}
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt kontonummer");
+
+		}
+	}
+
 	public static void four() {
 		System.out.print("från konto:");
-		int k = scan.nextInt();
-		System.out.print("belopp:");
-		double wd = scan.nextDouble();
-		bank.findByNumber(k).withdraw(wd);
-		System.out.println(bank.findByNumber(k));
-
+		if (scan.hasNextInt()) {
+			int k = scan.nextInt();
+			if (bank.findByNumber(k) == null) {
+				System.out.println("Kontot existerar ej.");
+			} else {
+				System.out.print("belopp:");
+				double wd = scan.nextDouble();
+				if (wd > bank.findByNumber(k).getAmount()) {
+					System.out.println("Konto saknar täckning");
+				} else {
+					bank.findByNumber(k).withdraw(wd);
+					System.out.println(bank.findByNumber(k));
+				}
+			}
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt kontonummer");
+		}
 	}
 
 	public static void five() {
 		System.out.print("från konto:");
-		int fk = scan.nextInt();
-		System.out.print("till konto:");
-		int tk = scan.nextInt();
-		System.out.print("belopp:");
-		double b = scan.nextDouble();
-		bank.findByNumber(fk).withdraw(b);
-		bank.findByNumber(tk).deposit(b);
-		System.out.println(bank.findByNumber(fk));
-		System.out.println(bank.findByNumber(tk));
+		if (scan.hasNextInt()) {
+			int fk = scan.nextInt();
+			if (bank.findByNumber(fk) == null) {
+				System.out.println("Kontot existerar ej.");
+			} else {
+				System.out.print("till konto:");
+				if (scan.hasNextInt()) {
+					int tk = scan.nextInt();
+					if (bank.findByNumber(tk) == null) {
+						System.out.println("Kontot existerar ej.");
+					} else {
+						System.out.print("belopp:");
+						double b = scan.nextDouble();
+						if (b > bank.findByNumber(fk).getAmount()) {
+							System.out.println("Konto saknar täckning");
+						} else {
+							bank.findByNumber(fk).withdraw(b);
+							bank.findByNumber(tk).deposit(b);
+							System.out.println(bank.findByNumber(fk));
+							System.out.println(bank.findByNumber(tk));
+						}
+					}
+				} else {
+					scan.nextLine();
+					scan.nextLine();
+					System.out.println("Välj ett giltigt kontonummer");
+				}
+			}
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt kontonummer");
 
+		}
 	}
 
 	public static void six() {
 		System.out.print("namn: ");
 		String namn = scan.next();
 		System.out.print("id: ");
-		long id = scan.nextLong();
-		System.out.println("konto skapat: " + bank.addAccount(namn, id));
-
+		if (scan.hasNextLong()) {
+			long id = scan.nextLong();
+			System.out.println("konto skapat: " + bank.addAccount(namn, id));
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt idnummer");
+		}
 	}
 
 	public static void seven() {
 		System.out.print("konto: ");
-		bank.removeAccount(scan.nextInt());
-
+		if (scan.hasNextInt()) {
+			if(!bank.removeAccount(scan.nextInt())) {
+				System.out.println("Finns inget matchande konot");
+			}else {
+				System.out.println("Kontot borttaget");
+			}
+		} else {
+			scan.nextLine();
+			scan.nextLine();
+			System.out.println("Välj ett giltigt kontonummer");
+		}
 	}
 
-	public static void eight() { // (valfritt) fixa inbördes ordning på en personer med samma namn
+	public static void eight() {
 		ArrayList<BankAccount> list = bank.getAllAccounts();
-		for (int i = 0; i < list.size(); i++)
-			System.out.println(list.get(i));
+		if (list.isEmpty()) {
+			System.out.println("Inga konton finns på banken");
+		} else {
+			for (int i = 0; i < list.size(); i++)
+				System.out.println(list.get(i));
+		}
 
 	}
 
@@ -174,5 +247,9 @@ public class BankApplication {
 		bank.addAccount("Kristina Söderberg", 9201218765L);
 		bank.addAccount("Magnus Andersson", 6909154321L);
 		bank.addAccount("Magnus Andersson", 6909154321L);
+		bank.findByNumber(1001).deposit(200);
+		bank.findByNumber(1002).deposit(2000);
+		bank.findByNumber(1003).deposit(50);
+
 	}
 }
