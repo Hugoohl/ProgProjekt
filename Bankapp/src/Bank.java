@@ -13,7 +13,7 @@ public class Bank {
 	 * givna uppgifterna ska inte en ny Customer skapas, utan istället den
 	 * befintliga användas. Det nya kontonumret returneras.
 	 */
-	
+
 	public int addAccount(String holderName, long idNr) {
 		for (int i = 0; i < bankAccounts.size(); i++) {
 			if (bankAccounts.get(i).getHolder().getName().equals(holderName)
@@ -30,17 +30,15 @@ public class Bank {
 																				// kontot vi precis la till.
 	}
 
-
-
 	Customer findHolder(long idNr) {
-	for(int i = 0; i<bankAccounts.size(); i++) {
-		//BankAccount b = bankAccounts.get(i);
-		if(bankAccounts.get(i).getAccountNumber() == idNr);
+		for (int i = 0; i < bankAccounts.size(); i++) {
+			// BankAccount b = bankAccounts.get(i);
+			if (bankAccounts.get(i).getAccountNumber() == idNr)
+				;
 			return bankAccounts.get(i).getHolder();
+		}
+		return null;
 	}
-	return null;
-	}
-	
 
 	/**
 	 * Tar bort konto med nummer 'number' från banken. Returnerar true om kontot
@@ -106,7 +104,6 @@ public class Bank {
 		return listOfAc;
 	}
 
-
 	/**
 	 * Söker upp kunder utifrån en sökning på namn eller del av namn. Alla personer
 	 * vars namn innehåller strängen 'namePart' inkluderas i resultatet, som
@@ -123,6 +120,5 @@ public class Bank {
 		}
 		return customerSearch;
 	}
-
 
 }
