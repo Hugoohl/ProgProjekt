@@ -50,9 +50,8 @@ public class BankApplication {
 				System.out.println("--------------------------------------------------------------");
 				break;
 			default:
-				System.out.println("Välj ett av de tillgängliga alternativen."); 
-																					
-																					
+				System.out.println("Välj ett av de tillgängliga alternativen.");
+
 			}
 
 		} else {
@@ -79,11 +78,16 @@ public class BankApplication {
 
 	public static void one() {
 		System.out.print("id:");
-		ArrayList<BankAccount> list = bank.findAccountsForHolder(scan.nextLong());
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
+		while (scan.hasNextLong()) {
+			
+			ArrayList<BankAccount> list = bank.findAccountsForHolder(scan.nextLong());
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println(list.get(i));
+			}
+			if (list.isEmpty()) {
+				System.out.println("Ogiltigt id: ");
+			}
 		}
-
 	}
 
 	public static void two() {
